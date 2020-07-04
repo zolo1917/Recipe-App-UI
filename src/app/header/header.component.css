@@ -1,0 +1,17 @@
+.col1{
+    width: 150px; 
+    float:left; 
+    height:30px; 
+    background-color: rgb(158, 70, 8); 
+    align-items: center;
+    margin-top: 9px;
+    border: 5px;
+    border-style: solid;
+    border-color: dimgray;
+}
+
+.headerRowColor{
+    margin: 10px;
+    height: 50px;
+    background-color: rgb(228, 130, 61);
+}

@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'recipe-app';
+  switchSection: boolean  = true;
+  currnetDisplay : string = 'recipe';
+  
+  headerSelector(event){
+    this.currnetDisplay = event;
+    this.switchSection = !this.switchSection;
+  }
+
 }
