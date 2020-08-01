@@ -1,6 +1,7 @@
 import { ingredient } from './../../shared/ingredient.model';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ShoppingListService } from '../shopping.service';
 
 @Component({
   selector: 'app-shopping-list-edit',
@@ -13,16 +14,17 @@ export class ShoppingListEditComponent implements OnInit {
   amount: number = 0;
   ingredient: ingredient;
   @Output() addEvent = new EventEmitter<ingredient>()
-  constructor() { }
+  constructor(private shoppingListService : ShoppingListService) { }
 
   ngOnInit(): void {
   }
   
   addIngredients(addIngredient : NgForm){
     if(addIngredient.valid){
-      this.ingredient = new ingredient(addIngredient.value.name, addIngredient.value.amount);
-      this.addEvent.emit(this.ingredient);
-      addIngredient.reset();
+      // this.ingredient = 
+      this.shoppingListService.addItemToList(new ingredient(addIngredient.value.name, addIngredient.value.amount));
+      // this.shoppingListService.addEventEmitter.emit(new ingredient(addIngredient.value.name, addIngredient.value.amount));
+      // addIngredient.reset();
     }
   }
   clearForm(addIngredient : NgForm){

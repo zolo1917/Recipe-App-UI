@@ -1,25 +1,33 @@
+import { ShoppingListService } from './shopping.service';
 import { ingredient } from './../shared/ingredient.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css']
+  styleUrls: ['./shopping-list.component.css'],
 })
 export class ShoppingListComponent implements OnInit {
 
-  public ingredients: ingredient[] = [
-    new ingredient("Apples",5),
-    new ingredient("Tomatos", 4)
-  ];
+  public ingredients : ingredient[] = [];
 
-  constructor() { }
+  constructor(private slService: ShoppingListService) { }
 
   ngOnInit(): void {
+    this.ingredients = this.slService.getIngredients();
+    // subscribing to the added event.
+    this.slService.addEventEmitter.subscribe((item : ingredient)=>{
+      this.ingredients.push(item);
+    });
+    //subscriber to remove item from list
+    this.slService.removeEventEmitter.subscribe((item : ingredient)=>{
+      this.ingredients.splice(this.ingredients.indexOf(item),1);
+    });
   }
 
-  add(event){
-    this.ingredients.push(event);
+  deleteItem(item : ingredient){
+    console.log("delete item clicked : " + item.name);
+    this.slService.deleteItemFromList(item);
   }
 
 }
