@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <!-- <div *ngIf="currnetDisplay === 'recipe'; then recipe else shoppingSection"></div> -->
-    <ng-template [ngIf]="currnetDisplay === 'recipe'">
+    <!-- <ng-template [ngIf]="currnetDisplay === 'recipe'">
       <div class="col-md-12">
         <app-recipe-book></app-recipe-book>
       </div>
@@ -12,6 +12,7 @@
       <div class="col-md-12">
         <app-shopping-list></app-shopping-list>
       </div>
-    </ng-template>
+    </ng-template> -->
+    <router-outlet></router-outlet>
   </div>
 </div>
