@@ -1,5 +1,4 @@
 import { RecipeService } from './recipe.service';
-import { recipe } from './recipe.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

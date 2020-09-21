@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  @Output() selectedRecipe = new EventEmitter<recipe>()
+  // @Output() selectedRecipe = new EventEmitter<recipe>()
   recipes : recipe[];
 
   constructor(private recipeServ : RecipeService, private router: Router, private activeRoute: ActivatedRoute) { }

@@ -6,13 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'recipe-app';
-  switchSection: boolean  = true;
-  currnetDisplay : string = 'recipes';
+  // title = 'recipe-app';
+  // switchSection: boolean  = true;
+  // currnetDisplay : string = 'recipes';
   
-  headerSelector(event){
-    this.currnetDisplay = event;
-    this.switchSection = !this.switchSection;
-  }
+  // headerSelector(event){
+  //   this.currnetDisplay = event;
+  //   this.switchSection = !this.switchSection;
+  // }
 
 }
