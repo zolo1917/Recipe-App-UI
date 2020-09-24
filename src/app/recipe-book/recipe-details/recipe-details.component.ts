@@ -48,6 +48,10 @@ export class RecipeDetailsComponent implements OnInit {
     console.log("Adding multiple items to list")
     this.slService.addAlltoList(items);
   }
-  
+
+  onDeleteRecipe(){
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['/recipes']);
+  }
 
 }

@@ -8,6 +8,7 @@ import { ingredient } from '../shared/ingredient.model';
 export class RecipeService {
 
     recipeSelected = new Subject<recipe>();
+    recipesChanged = new Subject<recipe[]>();
 
     private recipes : recipe[] = [
         new recipe("Test Recipe 1",
@@ -29,5 +30,20 @@ export class RecipeService {
         }else {
             return null;
         }
+    }
+
+    addRecipe(recipe : recipe){
+        this.recipes.push(recipe);
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    updateRecipe(index : number , newRecipe : recipe){
+        this.recipes[index] = newRecipe;
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    deleteRecipe(index : number){
+        this.recipes.splice(index,1);
+        this.recipesChanged.next(this.recipes.slice());
     }
 } 

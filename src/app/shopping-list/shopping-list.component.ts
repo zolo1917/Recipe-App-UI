@@ -13,6 +13,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   public ingredients : ingredient[] = [];
   private slAddEventSub : Subscription;
   private slRemoveEventSub : Subscription;
+  private slupdateEventSub: Subscription;
   constructor(private slService: ShoppingListService) { }
 
   ngOnInit(): void {
@@ -20,6 +21,11 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     // subscribing to the added event.
     this.slAddEventSub = this.slService.addEventEmitter.subscribe((item : ingredient)=>{
       this.ingredients.push(item);
+      // this.ingredients = this.slService.getIngredients()
+    });
+    this.slupdateEventSub = this.slService.updateEventEmitter.subscribe((data : any)=>{
+      this.ingredients = this.slService.getIngredients();
+      console.log(this.ingredients);
     });
     //subscriber to remove item from list
     this.slRemoveEventSub = this.slService.removeEventEmitter.subscribe((item : ingredient)=>{
@@ -30,6 +36,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   deleteItem(item : ingredient){
     console.log("delete item clicked : " + item.name);
     this.slService.deleteItemFromList(item);
+  }
+
+  onEditItem(index : number){
+    this.slService.startedEditing.next(index);
   }
 
   ngOnDestroy(){

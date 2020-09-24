@@ -4,10 +4,10 @@
         <hr>
         <ul class="list-group">
             <a class="list-group-item" style="cursor: pointer;" 
-            *ngFor = "let ingredient of ingredients" >
+            *ngFor = "let ingredient of ingredients; let i = index" >
                 {{ingredient.name}} ({{ingredient.amount}})
                 <div class="col-xs-3 pull-right">
-                    <button class="btn btn-edit pull-left">Edit</button>
+                    <button class="btn btn-default" (click)="onEditItem(i)">Edit</button>
                     <button class="btn btn-danger pull-right" (click)="deleteItem(ingredient)">Delete</button>    
                 </div>
             </a>
