@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { authService, AuthResponseData } from './auth-service';
 import { NgForm } from '@angular/forms';
 import { Component, ComponentFactoryResolver, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -14,7 +14,8 @@ export class AuthComponent {
   isLoginMode = false;
   isLoading = false;
   error: string = null;
-  @ViewChild(PlaceholderDirective) alertHost : PlaceholderDirective;
+  @ViewChild(PlaceholderDirective, {static : false}) alertHost : PlaceholderDirective;
+  private closeSub : Subscription;
   constructor(
       private as: authService, 
       private router: Router,
@@ -63,7 +64,11 @@ export class AuthComponent {
     const alertCmpFactory = this.CFResolver.resolveComponentFactory(AlertComponent);
     const hostViewContainerRef = this.alertHost.viewContainerRef;
     hostViewContainerRef.clear();
-
-
+    const componentRef = hostViewContainerRef.createComponent(alertCmpFactory);
+    componentRef.instance.message = message;
+    this.closeSub= componentRef.instance.closeEmitter.subscribe(()=>{
+      this.closeSub.unsubscribe();
+      hostViewContainerRef.clear();
+    });
   }
 }
