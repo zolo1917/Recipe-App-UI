@@ -66,7 +66,7 @@ export class AuthComponent {
     hostViewContainerRef.clear();
     const componentRef = hostViewContainerRef.createComponent(alertCmpFactory);
     componentRef.instance.message = message;
-    this.closeSub= componentRef.instance.closeEmitter.subscribe(()=>{
+    this.closeSub = componentRef.instance.closeEmitter.subscribe(()=>{
       this.closeSub.unsubscribe();
       hostViewContainerRef.clear();
     });
