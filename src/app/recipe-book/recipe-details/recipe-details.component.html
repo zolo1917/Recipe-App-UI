@@ -8,10 +8,10 @@
         <div class="col-xs-8">
             <h3>{{ selectedRecipe.name }}</h3>
         </div>
-        <div appDropdown class="col-xs-4 pull-right">
-            <button class="btn btn-primary dropdown-toggle">
+        <div appDropdown class="col-xs-4 pull-right dropdown">
+            <a class="btn btn-primary dropdown-toggle" role="button">
                 Manage <span class="caret"></span>
-            </button>
+            </a>
             <ul class="dropdown-menu">
                 <li><a (click)="addAllToSL(selectedRecipe.ingredients)">Add to Shopping list</a></li>
                 <li><a (click)="onEdit()">Edit</a></li>

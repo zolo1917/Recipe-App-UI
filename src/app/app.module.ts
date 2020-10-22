@@ -1,3 +1,6 @@
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core.module';
+import { SharedModule } from './shared/shared.module';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 import { AlertComponent } from './shared/alert/alert.component';
 import { RecipeService } from './recipe-book/recipe.service';
@@ -16,33 +19,22 @@ import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinner } from './shared/Loading Spinner/loading-Spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor-service';
 import { RecipeBookModule } from './recipe-book/recipe-book.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShoppingListComponent,
-    ShoppingListEditComponent,
-    HeaderComponent,
-    DropdownDirective,
-    AuthComponent,
-    LoadingSpinner,
-    AlertComponent,
-    PlaceholderDirective
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     RecipeBookModule,
-    HttpClientModule
-  ],
-  providers: [ShoppingListService, RecipeService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true
-    }
+    ShoppingListModule,
+    HttpClientModule,
+    SharedModule,
+    AuthModule,
+    CoreModule
   ],
   bootstrap: [AppComponent]
 })

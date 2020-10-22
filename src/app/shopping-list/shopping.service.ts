@@ -48,7 +48,7 @@ export class ShoppingListService{
 
     deleteItemFromList(item : ingredient){
         console.log("Deleting item from shoppingList");
-        if(this.ingredients.includes(item)){
+        if(this.ingredients.some(e => e.name === item.name)){
             console.log("item INcluded")
             this.ingredients.splice(this.ingredients.indexOf(item),1);
             // this.printIngredientList();
