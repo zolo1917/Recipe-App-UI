@@ -9,7 +9,7 @@ import { NgModule } from '@angular/core';
     ],
     imports : [
         RouterModule.forChild([
-            { path: 'auth', component: AuthComponent }
+            { path: '', component: AuthComponent }
         ]),
         SharedModule
     ],

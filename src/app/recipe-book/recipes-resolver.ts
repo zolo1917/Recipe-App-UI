@@ -10,7 +10,7 @@ export class recipesResolver implements Resolve<recipe[]> {
     constructor(private dsService: DataStorageService, private recipeServ: RecipeService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        let recipes = this.recipeServ.getRecipes();
+        const recipes = this.recipeServ.getRecipes();
         if (recipes.length === 0) {
             return this.dsService.getStoreRecepies();
         } else {

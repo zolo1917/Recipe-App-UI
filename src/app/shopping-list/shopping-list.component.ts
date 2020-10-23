@@ -1,3 +1,4 @@
+import { LoggingService } from './../logging.service';
 import { ShoppingListService } from './shopping.service';
 import { ingredient } from './../shared/ingredient.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -10,20 +11,22 @@ import { Subscription } from 'rxjs';
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
 
-  public ingredients : ingredient[] = [];
-  private slAddEventSub : Subscription;
-  private slRemoveEventSub : Subscription;
+  public ingredients: ingredient[] = [];
+  private slAddEventSub: Subscription;
+  private slRemoveEventSub: Subscription;
   private slupdateEventSub: Subscription;
-  constructor(private slService: ShoppingListService) { }
+
+  constructor(private slService: ShoppingListService, private log: LoggingService) { }
 
   ngOnInit(): void {
     this.ingredients = this.slService.getIngredients();
     // subscribing to the added event.
-    this.slAddEventSub = this.slService.addEventEmitter.subscribe((item : ingredient)=>{
+    this.slAddEventSub = this.slService.addEventEmitter.subscribe((item: ingredient) => {
       this.ingredients.push(item);
       // this.ingredients = this.slService.getIngredients()
+      this.log.printLog("SL ng on init");
     });
-    this.slupdateEventSub = this.slService.updateEventEmitter.subscribe((data : any)=>{
+    this.slupdateEventSub = this.slService.updateEventEmitter.subscribe((data: any) => {
       this.ingredients = this.slService.getIngredients();
       console.log(this.ingredients);
     });
