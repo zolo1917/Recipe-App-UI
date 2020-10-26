@@ -1,4 +1,4 @@
-import { recipe } from './recipe.model';
+import { RecipeService } from './recipe.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,15 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-book.component.css']
 })
 export class RecipeBookComponent implements OnInit {
-  
-  displayedRecipe : recipe;
   constructor() { }
 
   ngOnInit(): void {
-  }
-  
-  showSelectedRecipe(event){
-    console.log("recipe - book :" + event);
-    this.displayedRecipe = event;
   }
 }
