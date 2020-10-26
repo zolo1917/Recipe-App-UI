@@ -3,25 +3,26 @@ import { AlertComponent } from './../shared/alert/alert.component';
 import { Router } from '@angular/router';
 import { authService, AuthResponseData } from './auth-service';
 import { NgForm } from '@angular/forms';
-import { Component, ComponentFactoryResolver, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewChild, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html'
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit{
   isLoginMode = false;
   isLoading = false;
   error: string = null;
   @ViewChild(PlaceholderDirective, {static : false}) alertHost : PlaceholderDirective;
   private closeSub : Subscription;
   constructor(
-      private as: authService, 
+      private as: authService,
       private router: Router,
-      private CFResolver : ComponentFactoryResolver
+      private CFResolver: ComponentFactoryResolver,
     ) { }
-
+  ngOnInit(){
+  }
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }

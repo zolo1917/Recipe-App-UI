@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { UserModel } from './user.model';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -21,7 +22,8 @@ export class authService {
 
     constructor(private http: HttpClient, private router: Router) { }
     signup(email: string, password: string) {
-        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyABltTPHyD3CPPmrBcgELuCW83x3kgXesE', {
+        return this.http.post<AuthResponseData>
+        ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+ environment.firebaseAPIKey, {
             email: email,
             password: password,
             returnSecureToken: true
@@ -31,7 +33,8 @@ export class authService {
     }
 
     login(email: string, password: string) {
-        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyABltTPHyD3CPPmrBcgELuCW83x3kgXesE', {
+        return this.http.post<AuthResponseData>
+        ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey, {
             email: email,
             password: password,
             returnSecureToken: true
