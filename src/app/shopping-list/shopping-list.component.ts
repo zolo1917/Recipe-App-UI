@@ -2,6 +2,7 @@ import { ShoppingListService } from './shopping.service';
 import { ingredient } from './../shared/ingredient.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,7 +16,9 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   private slRemoveEventSub: Subscription;
   private slupdateEventSub: Subscription;
 
-  constructor(private slService: ShoppingListService) { }
+  constructor(private slService: ShoppingListService,
+              private store: Store<{shoppingList: {ingredients: ingredient[]}}>
+    ) { }
 
   ngOnInit(): void {
     this.ingredients = this.slService.getIngredients();
@@ -28,18 +31,18 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       this.ingredients = this.slService.getIngredients();
       console.log(this.ingredients);
     });
-    //subscriber to remove item from list
-    this.slRemoveEventSub = this.slService.removeEventEmitter.subscribe((item : ingredient)=>{
-      this.ingredients.splice(this.ingredients.indexOf(item),1);
+    // subscriber to remove item from list
+    this.slRemoveEventSub = this.slService.removeEventEmitter.subscribe((item: ingredient) => {
+      this.ingredients.splice(this.ingredients.indexOf(item), 1);
     });
   }
 
-  deleteItem(item : ingredient){
-    console.log("delete item clicked : " + item.name);
+  deleteItem(item: ingredient){
+    console.log('delete item clicked:' + item.name);
     this.slService.deleteItemFromList(item);
   }
 
-  onEditItem(index : number){
+  onEditItem(index: number){
     this.slService.startedEditing.next(index);
   }
 
